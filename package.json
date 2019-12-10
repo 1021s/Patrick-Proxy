@@ -1,0 +1,27 @@
+{
+  "name": "Patrick-Proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1021s/Patrick-Proxy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1021s/Patrick-Proxy/issues"
+  },
+  "homepage": "https://github.com/1021s/Patrick-Proxy#readme",
+  "dependencies": {
+    "eslint": "^6.7.2",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "nodemon": "^2.0.1"
+  }
+}
