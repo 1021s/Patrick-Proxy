@@ -1,11 +1,95 @@
 const express = require('express');
-const app = express();
-const port = 3000;
+const request = require('request');
 
-app.use(express.static(`${__dirname}/../public/dist`));
-app.use(express.urlencoded({ extended: true }));
+const path = require('path');
+
+const app = express();
+const PORT = 3000 || process.env.PORT;
+
+app.use(express.static(path.resolve(__dirname, '..', 'public')));
 app.use(express.json());
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/kyle-service/bundle.js', (req, res) => {
+  request('http://localhost:3001/bundle.js', (err, response) => {
+    res.send(response.body);
+  });
+});
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.get('/api/listings/:Listing_id', (req, res) => {
+  request('http://localhost:3001/api/listings/' + req.params.Listing_id, (err, response) => {
+    res.send(response.body);
+  });
+});
+
+app.get('/patrick-service/bundle.js', (req, res) => {
+  request('http://localhost:3002/bundle.js', (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(response.body);
+  });
+});
+
+app.get('/listings/:id', (req, res) => {
+  request('http://localhost:3002/listings/' + req.params.id, (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(response.body);
+  });
+});
+
+app.get('/sayer-service/bundle.js', (req, res) => {
+  request('http://localhost:3003/bundle.js', (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(response.body);
+  });
+});
+
+app.get('/api/listing/:Listing_id/', (req, res) => {
+  request('http://localhost:3003/api/listing/' + req.params.Listing_id, (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(response.body);
+  });
+});
+
+// app.get('/matt-service/bundle.js', (req, res) => {
+//   request('http://localhost:3004/bundle.js', (err, response) => {
+//     res.send(response.body);
+//   });
+// });
+
+// app.get('/api/listings/:listing_id/', (req, res) => {
+//   request('http://localhost:3004/api/listings/' + req.params.listing_id, (err, response) => {
+//     res.send(response.body);
+//   });
+// });
+
+app.get('/inna-service/bundle.js', (req, res) => {
+  request('http://localhost:3005/dist/bundle.js', (err, response) => {
+    // console.log('response ', response.body);
+
+    if (err) {
+      console.log(err);
+    }
+    res.send(response.body);
+  });
+});
+
+app.get('/api/photos/:id/', (req, res) => {
+  request('http://localhost:3005/api/photos/' + req.params.id, (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+
+    res.send(response.body);
+  });
+});
+
+app.listen(PORT, () => {
+  console.log('Server listening on port: ', PORT);
+});
