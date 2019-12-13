@@ -1,0 +1,21 @@
+body {
+  background-color: black;
+}
+
+.proxy-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  background-color: white;
+  width: 60%;
+  top: 10px;
+  right: 20%;
+}
+
+.one, .two {
+  width: 50%;
+}
+
+.two {
+  padding-right: 30px;
+}
